@@ -6,22 +6,24 @@ import { Button } from '@chakra-ui/button';
 import { useToast } from '@chakra-ui/react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import { ChatState } from '../context/ChatProvider';
 
 const Login = () => {
 
     const [show, setShow] = useState(false);
+    const handleClick = () => setShow(!show); 
+    const toast = useToast();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [loading, setLoading] = useState(false);
 
-    const toast = useToast();
     const history = useHistory();
-    const handleClick = () => setShow(!show); 
-
+    const { setUser } = ChatState();
+    
     const submitHandler = async () => { 
         setLoading(true);
         if (!email || !password) {
-            useToast({
+            toast({
                 title: 'Please fill out all fields',
                 status: 'warning',
                 duration: 5000,
@@ -52,6 +54,7 @@ const Login = () => {
                 isClosable: true,
                 position: bottom
             });
+            setUser(data);
             localStorage.setItem('userInfo', JSON.stringify(data));
             setLoading(false);
             history.push('/chats');
@@ -69,18 +72,19 @@ const Login = () => {
     };
 
     return (
-        <VStack spacing='5px'>
+        <VStack spacing='10px'>
             <FormControl id='email' isRequired>
                 <FormLabel>Email Address</FormLabel>
                 <Input
                     placeholder='Enter Your Email Address'
                     value={email}
+                    type='email'
                     onChange={(e) => setEmail(e.target.value)}
                 />
             </FormControl>
             <FormControl id='password' isRequired>
                 <FormLabel>Password</FormLabel>
-                <InputGroup>
+                <InputGroup size='md'>
                     <Input
                         type={show ? 'text' : 'password'}
                         placeholder='Enter Your Password'
@@ -88,7 +92,7 @@ const Login = () => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                     <InputRightElement width='4.5rem'>
-                        <Button h='1.75rem' size='sm' bg='clear' color='white' onClick={handleClick}>
+                        <Button h='1.75rem' size='sm' onClick={handleClick}>
                             {show ? 'Hide' : 'Show'}
                         </Button>
                     </InputRightElement>

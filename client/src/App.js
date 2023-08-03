@@ -10,6 +10,6 @@ function App() {
       <Route path='/chats' component={Chatpage} />
     </div>
   );
-}
+};
 
 export default App;
