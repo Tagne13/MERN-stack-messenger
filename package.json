@@ -7,10 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/server.js",
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
-    "install": "cd server && npm i && cd ../client && npm i",
-    "build": "cd client && npm run build",
-    "server": "nodemon server.server.js",
-    "seed": "cd server && seeds/seed.js"
+    "build": "npm install --legacy-peer-deps && npm install --legacy-peer-deps --prefix frontend && npm run build --prefix frontend",
+    "server": "nodemon server/server.js",
+    "seed": "cd server && node seeds/seed.js"
   },
   "repository": {
     "type": "git",
@@ -26,13 +25,13 @@
     "concurrently": "^5.3.0"
   },
   "dependencies": {
-    "babel-jest": "^26.6.0",
     "bcrypt": "^5.1.0",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "express-async-handler": "^1.2.0",
-    "jsonwebtoken": "^9.0.1",
-    "mongoose": "^7.4.1",
-    "nodemon": "^3.0.1"
+    "dotenv": "^9.0.2",
+    "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.9",
+    "nodemon": "^2.0.7",
+    "socket.io": "^4.1.2"
   }
 }
