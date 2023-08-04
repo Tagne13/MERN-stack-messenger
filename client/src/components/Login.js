@@ -28,7 +28,7 @@ const Login = () => {
                 status: 'warning',
                 duration: 5000,
                 isClosable: true,
-                position: bottom
+                position: 'bottom'
             });
             setLoading(false);
             return;
@@ -52,7 +52,7 @@ const Login = () => {
                 status: 'success',
                 duration: 5000,
                 isClosable: true,
-                position: bottom
+                position: 'bottom'
             });
             setUser(data);
             localStorage.setItem('userInfo', JSON.stringify(data));
