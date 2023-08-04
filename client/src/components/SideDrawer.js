@@ -17,8 +17,8 @@ import { useToast } from '@chakra-ui/toast';
 import { Spinner } from '@chakra-ui/spinner';
 import NotificationBadge from 'react-notification-badge';
 import { Effect } from 'react-notification-badge';
-import { getSender } from '';
-import { UserListItem } from './UserListItem';
+import { getSender } from '../config/ChatLogics';
+// import { UserListItem } from '../userAvatar/UserListItem';
  
 function SideDrawer() {
     const [search, setSearch] = useState('');
@@ -185,7 +185,7 @@ function SideDrawer() {
                             />
                             <Button onClick={handleSearch}>Go</Button>
                         </Box>
-                        {loading ? (
+                        {/* {loading ? (
                             <ChatLoading /> 
                         ) : (
                             searchResult?.map((user) => (
@@ -196,7 +196,7 @@ function SideDrawer() {
                                 />
                             ))
                         )}
-                        {loadingChat && <Spinner ml='auto' d='flex' />}
+                        {loadingChat && <Spinner ml='auto' d='flex' />} */}
                     </DrawerBody>
                 </DrawerContent>
             </Drawer>
