@@ -28,7 +28,7 @@ const MyChats = ({ fetchAgain }) => {
             setChats(data);
         } catch (error) {
             toast({
-                title: 'Error Occured',
+                title: 'Error Occurred',
                 description: 'Failed to load chats',
                 status: 'error',
                 duration: 5000,
@@ -66,13 +66,13 @@ const MyChats = ({ fetchAgain }) => {
             >
                 My Chats
                 <GroupChatModal>
-                    <Button
+                  <Button
                     d='flex'
                     fontSize={{ base: '17px', md: '10px', lg: '17px' }}
                     rightIcon={<AddIcon />}
                 >
                     New Group Chat
-                    </Button>
+                  </Button>
                 </GroupChatModal>
             </Box>
             <Box
@@ -103,6 +103,14 @@ const MyChats = ({ fetchAgain }) => {
                                         ? getSender(loggedUser, chat.users)
                                         : chat.chatName}
                                 </Text>
+                                {chat.latestMessage && (
+                                    <Text fontSize='xs'>
+                                        <b>{chat.latestMessage.sender.name} : </b>
+                                        {chat.latestMessage.content.length > 50
+                                            ? chat.latestMessage.content.substring(0, 51) + '...'
+                                    : chat.latestMessage.content}
+                                    </Text>
+                                )}
                             </Box>
                         ))}
                     </Stack>
