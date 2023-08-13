@@ -2,10 +2,12 @@ const asyncHandler = require('express-async-handler');
 const { User } = require('../models/index');
 const signToken = require('../utils/auth');
 
+// Register a new user
+// POST /api/user
 const registerUser = asyncHandler(async (req, res) => {
-    const { username, email, password, pic } = req.body;
+    const { name, email, password, pic } = req.body;
 
-    if (!username || !email || !password) {
+    if (!name || !email || !password) {
         res.status(400);
         throw new Error('Please enter all fields');
     }
@@ -18,7 +20,7 @@ const registerUser = asyncHandler(async (req, res) => {
     }
 
     const user = await User.create({
-        username,
+        name,
         email,
         password,
         pic
@@ -27,7 +29,7 @@ const registerUser = asyncHandler(async (req, res) => {
     if (user) {
         res.status(201).json({
             _id: user._id,
-            username: user.username,
+            name: user.name,
             email: user.email,
             pic: user.pic,
             token: signToken(user._id)
@@ -38,6 +40,8 @@ const registerUser = asyncHandler(async (req, res) => {
     }
 });
 
+// Authorize user
+// POST /api/users/login
 const authUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
 
@@ -46,8 +50,9 @@ const authUser = asyncHandler(async (req, res) => {
     if (user && (await user.isCorrectPassword(password))) {
         res.json({
             _id: user._id,
-            username: user.username,
+            name: user.name,
             email: user.email,
+            isAdmin: user.isAdmin,
             pic: user.pic,
             token: signToken(user._id)
         });
@@ -57,6 +62,8 @@ const authUser = asyncHandler(async (req, res) => {
     }
 });
 
+// Get/search all users
+// GET /api/user?search=
 const allUsers = asyncHandler(async (req, res) => {
     const keyword = req.query.search
       ? {
