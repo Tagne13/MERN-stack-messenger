@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Text } from '@chakra-ui/layout';
 import { Avatar } from '@chakra-ui/avatar';
-import { ChatState } from '../../context/ChatProvider';
+import { ChatState } from '../context/ChatProvider';
 
 const UserListItem = ({ handleFunction }) => {
     const { user } = ChatState();
