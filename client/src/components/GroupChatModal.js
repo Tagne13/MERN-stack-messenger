@@ -8,6 +8,7 @@ import React, { useState } from 'react';
 import { ChatState } from '../context/ChatProvider';
 import UserBadgeItem from '../userAvatar/UserBadgeItem';
 import UserListItem from '../userAvatar/UserListItem';
+import ChatLoading from './ChatLoading';
 
 const GroupChatModal = ({ children }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
