@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "a mern-stack chat app",
   "main": "server.js",
+  "proxy": "http://127.0.0.1:3001",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/server.js",
-    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+    "develop": "concurrently \"npm start\" \"cd client && npm start\"",
     "build": "npm install --legacy-peer-deps && npm install --legacy-peer-deps --prefix frontend && npm run build --prefix frontend",
     "server": "nodemon server/server.js",
     "seed": "cd server && node seeds/seed.js"
@@ -22,6 +23,7 @@
   },
   "homepage": "https://github.com/Tagne13/MERN-stack-messenger#readme",
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "concurrently": "^5.3.0"
   },
   "dependencies": {

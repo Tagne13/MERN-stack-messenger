@@ -119,7 +119,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
                     Authorization: `Bearer ${user.token}`
                 }
             };
-            const { data } = await axious.put(
+            const { data } = await axios.put(
                 `/api/chat/groupadd`,
                 {
                     chatId: selectedChat._id,

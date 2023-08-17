@@ -7,7 +7,7 @@ import ProfileModal from './ProfileModal';
 import UpdateGroupChatModal from './UpdateGroupChatModal';
 import ScrollableChat from './ScrollableChat';
 import animationData from '../animations/typing.json';
-import Lottie from 'react-lottie';
+// import Lottie from 'react-lottie';
 import io from 'socket.io-client';
 import { FormControl } from '@chakra-ui/form-control';
 import { Input } from '@chakra-ui/input';
@@ -223,7 +223,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                             isRequired
                             mt={3}
                         >
-                            {isTyping ? (
+                            {/* {isTyping ? (
                                 <div>
                                     <Lottie
                                         options={defaultOptions}
@@ -233,7 +233,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                                 </div>
                             ) : (
                                 <></>
-                            )}
+                            )} */}
                             <Input
                                 variant='filled'
                                 bg='#E0E0E0'
